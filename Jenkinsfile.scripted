@@ -2,7 +2,7 @@
 
 properties([
   parameters([
-    string(name: 'ENVIRONVENT', defaultValue: "TEST", description: "Indicates the current execution environment.")
+    string(name: 'Environment', defaultValue: "TEST", description: "Indicates the current execution environment.")
   ])
 ])
 
@@ -10,7 +10,7 @@ node {
   checkout scm
 
   stage('build') {
-    echo 'Parameter: ${params.ENVIRONMENT}'
+    echo 'Parameter: ${params.Environment}'
     echo 'building...'
   }
 
