@@ -25,4 +25,10 @@ pipeline {
       }
     }
   }
+
+  post {
+    success {
+      slackSend color: 'good', message: sh(returnStdout: true, script: 'echo "Job #$BUILD_TAG Successful..!"'), channel: "#kata-jenkins"
+    }
+  }
 }
