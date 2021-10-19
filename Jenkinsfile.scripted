@@ -1,5 +1,11 @@
 #!/usr/bin/env groovy
 
+properties([
+  parameters([
+    string(name: 'ENVIRONVENT', defaultValue: "TEST", description: "Indicates the current execution environment.")
+  ])
+])
+
 node {
   checkout scm
 
