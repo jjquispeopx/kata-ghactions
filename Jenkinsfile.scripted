@@ -4,7 +4,7 @@ node {
   checkout scm
 
   stage('build') {
-    echo 'Environment: $ENVIRONMENT'
+    echo 'Environment: ${env.ENVIRONMENT}'
     echo 'building...'
   }
 
