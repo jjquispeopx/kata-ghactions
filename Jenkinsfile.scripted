@@ -3,15 +3,19 @@
 node {
   checkout scm
 
-  stage('Build') {
-    echo "building..."
+  stage('build') {
+    echo 'building...'
   }
 
-  stage('Push') {
-    echo "pushing..."
+  stage('test') {
+    echo 'testing...'
   }
 
-  stage('Deploy') {
-    echo "deploying..."
+  stage('release') {
+    echo 'pushing...'
+  }
+
+  stage('deploy') {
+    echo 'deploying...'
   }
 }
