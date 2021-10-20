@@ -21,7 +21,7 @@ node {
       echo "${env.REGISTRY_PASS}"
       echo "${env.TAG}"
       sh "echo ${params.STAGE}"
-      sh "$TAG"
+      sh "echo $TAG"
     }
 
     stage('test') {
