@@ -2,7 +2,7 @@
 properties([
   parameters([
     string(defaultValue: 'Hello', description: 'How should I greet the world?', name: 'Greeting'),
-    string(defaultValue: 'TEST', description: 'How should I greet the world?', name: 'Stage'),
+    string(defaultValue: 'TEST', description: 'How should I greet the world?', name: 'STAGE'),
   ])
 ])
 
@@ -12,12 +12,12 @@ node {
 
     stage('build') {
       echo "${params.Greeting} World!"
-      echo "${params.Stage} World!"
+      echo "${params.STAGE} World!"
       echo 'building...'
     }
 
     stage('test') {
-      echo "${params.Stage} World!"
+      echo "${params.STAGE} World!"
       echo 'testing...'
     }
 
