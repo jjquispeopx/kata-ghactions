@@ -20,7 +20,8 @@ node {
       echo "${params.STAGE} World!"
       echo "${env.REGISTRY_PASS}"
       echo "${env.TAG}"
-      sh "$REGISTRY_PASS"
+      sh "{STAGE}"
+      sh "$TAG"
     }
 
     stage('test') {
