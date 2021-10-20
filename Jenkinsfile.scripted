@@ -28,6 +28,8 @@ node {
     stage('deploy') {
       echo 'deploying...'
     }
+
+    slackSend(channel: "kata-jenkins", message: "https://www.nytimes.com", sendAsText: true)
   }
   catch (e) {
     echo 'Job FAILED.!'
