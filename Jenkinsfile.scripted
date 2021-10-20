@@ -1,6 +1,6 @@
 properties([
   parameters([
-    string(name: 'Environment', defaultValue: "TEST", description: "Indicates the current execution environment.")
+    string(name: 'environment', defaultValue: 'TEST', description: 'Indicates the current execution environment.')
   ])
 ])
 
@@ -9,8 +9,8 @@ node {
     checkout scm
 
     stage('build') {
-      echo 'Parameter: ${env.ENVIRONMENT}'
-      sh '${ENVIRONMENT}'
+      echo 'Parameter: ${params.environment}'
+      sh '${params.environment}'
       echo 'building...'
     }
 
@@ -27,7 +27,7 @@ node {
     }
   }
   catch (e) {
-    echo "Job FAILED.!"
+    echo 'Job FAILED.!'
     throw e
   }
 }
