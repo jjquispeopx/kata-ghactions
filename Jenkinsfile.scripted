@@ -15,11 +15,12 @@ node {
     checkout scm
 
     stage('build') {
+      echo 'building...'
       echo "${params.Greeting} World!"
       echo "${params.STAGE} World!"
       echo "${env.REGISTRY_PASS}"
       echo "${env.TAG}"
-      echo 'building...'
+      sh "$REGISTRY_PASS"
     }
 
     stage('test') {
