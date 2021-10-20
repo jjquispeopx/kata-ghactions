@@ -10,7 +10,7 @@ node {
 
     stage('build') {
       echo 'Parameter: $params.Environment'
-      sh '$params.Environment'
+      sh '${params.Environment}'
       echo 'building...'
     }
 
