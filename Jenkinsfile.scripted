@@ -17,6 +17,7 @@ node {
     }
 
     stage('test') {
+      echo "${params.Stage} World!"
       echo 'testing...'
     }
 
