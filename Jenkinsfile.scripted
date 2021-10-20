@@ -1,6 +1,8 @@
+
 properties([
   parameters([
-    string(name: 'environment', defaultValue: 'TEST', description: 'Indicates the current execution environment.')
+    string(defaultValue: 'TEST', description: 'Indicates the current execution environment.', name: "ENV"),
+    string(defaultValue: 'Hello', description: 'How should I greet the world?', name: 'Greeting')
   ])
 ])
 
@@ -9,8 +11,8 @@ node {
     checkout scm
 
     stage('build') {
-      echo 'Parameter: ${params.environment}'
-      sh '${params.environment}'
+      echo "${params.Greeting} World!"
+      echo 'Parameter: ${params.ENV}'
       echo 'building...'
     }
 
