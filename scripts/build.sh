@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo "$IMAGE $REGISTRY_PASS ${params.Greeting}"
+echo "$IMAGE $REGISTRY_PASS $Greeting"
