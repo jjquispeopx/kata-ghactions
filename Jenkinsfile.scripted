@@ -30,6 +30,7 @@ node {
         sh "sh scripts/build.sh"
       }
       sh "echo $SECRET"
+      sh "printenv"
     }
 
     stage('test') {
