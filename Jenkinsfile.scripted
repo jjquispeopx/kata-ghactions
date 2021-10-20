@@ -7,12 +7,18 @@ properties([
 ])
 
 node {
+
+  env.REGISTRY_PASS = credentials('registry-pass')
+  env.TAG = 'image/tag'
+
   try {
     checkout scm
 
     stage('build') {
       echo "${params.Greeting} World!"
       echo "${params.STAGE} World!"
+      echo "${env.REGISTRY_PASS}"
+      echo "${env.TAG}"
       echo 'building...'
     }
 
