@@ -9,8 +9,8 @@ node {
     checkout scm
 
     stage('build') {
-      echo 'Parameter: $params.Environment'
-      sh '${params.Environment}'
+      echo 'Parameter: ${env.ENVIRONMENT}'
+      sh '${ENVIRONMENT}'
       echo 'building...'
     }
 
