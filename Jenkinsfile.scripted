@@ -12,7 +12,9 @@ node {
   env.TAG = 'image/tag'
   env.IMAGE = 'app-backend'
   env.SECRET = '$IMAGE:$TAGGIN'
-  env.VAR = sh 'echo ${env.GIT_COMMIT} | cut -c1-10'
+  script {
+    env.VAR = sh('echo ${env.GIT_COMMIT} | cut -c1-10')
+  }
 
   try {
     checkout scm
