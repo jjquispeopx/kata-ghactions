@@ -18,6 +18,7 @@ node {
 
     stage('preparation') {
       sh "git --no-pager diff --name-only HEAD~1 | sort -u | uniq > changelist.txt"
+      sh "echo $GIT_COMMIT | cut -c1-10 > short_sha.txt"
       script {
         env.FILENAME = readFile "changelist.txt"
         env.SHA = readFile "short_sha.txt"
