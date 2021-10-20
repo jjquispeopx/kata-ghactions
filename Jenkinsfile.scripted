@@ -11,7 +11,7 @@ node {
 
   env.REGISTRY_PASS = credentials('registry-pass')
   env.TAG = 'image/tag'
-  env.REPO = 'app/$TAGGIN'
+  env.REPO = echo('app/${params.TAGGIN}')
 
   try {
     checkout scm
