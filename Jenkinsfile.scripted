@@ -4,6 +4,7 @@ properties([
     string(defaultValue: 'Hello', description: 'How should I greet the world?', name: 'Greeting'),
     string(defaultValue: 'TEST', description: 'How should I greet the world?', name: 'STAGE'),
     string(defaultValue: 'v0.1', description: 'How should I greet the world?', name: 'TAGGIN'),
+    string(defaultValue: sh('echo $GIT_COMMIT | cut -c1-10') description: 'How should I greet the world?', name: 'VAR'),
   ])
 ])
 
@@ -12,10 +13,6 @@ node {
   env.TAG = 'image/tag'
   env.IMAGE = 'app-backend'
   env.SECRET = '$IMAGE:$TAGGIN'
-  script {
-    echo $GIT_COMMIT | cut -c1-10 > tag.txt
-    env.VAR = readFile tag.txt
-  }
 
   try {
     checkout scm
