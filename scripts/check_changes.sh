@@ -5,6 +5,6 @@ BACKEND_CHECK=`echo $CHANGES | grep backend/`
 
 echo "$BACKEND_CHECK"
 
-if [ ! $(echo $CHANGES | grep backend) ]; then
+if [ "$1" == "backend" ]; then
 	echo "Hello"
 fi
