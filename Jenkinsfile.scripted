@@ -3,7 +3,7 @@ properties([
   parameters([
     string(defaultValue: 'Hello', description: 'How should I greet the world?', name: 'Greeting'),
     string(defaultValue: 'TEST', description: 'How should I greet the world?', name: 'STAGE'),
-    string(defaultValue: 'v0.1', description: 'How should I greet the world?', name: 'TAG'),
+    string(defaultValue: 'v0.1', description: 'How should I greet the world?', name: 'TAGGIN'),
   ])
 ])
 
@@ -11,7 +11,7 @@ node {
 
   env.REGISTRY_PASS = credentials('registry-pass')
   env.TAG = 'image/tag'
-  env.REPO = 'app/${params.TAG}'
+  env.REPO = 'app/$TAGGIN'
 
   try {
     checkout scm
