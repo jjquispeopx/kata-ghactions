@@ -11,7 +11,7 @@ node {
 
   env.TAG = 'image/tag'
   env.IMAGE = 'app-backend'
-  env.SECRET = sh(returnStdout: true, script: 'echo $GIT_COMMIT')
+  env.SECRET = sh(returnStdout: true, script: 'echo ${env.GIT_COMMIT}')
 
   try {
     checkout scm
