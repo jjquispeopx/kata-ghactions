@@ -5,22 +5,28 @@ properties([
 ])
 
 node {
-  checkout scm
+  try {
+    checkout scm
 
-  stage('build') {
-    echo 'Parameter: $params.Environment'
-    echo 'building...'
+    stage('build') {
+      echo 'Parameter: $params.Environment'
+      echo 'building...'
+    }
+
+    stage('test') {
+      echo 'testing...'
+    }
+
+    stage('release') {
+      echo 'pushing...'
+    }
+
+    stage('deploy') {
+      echo 'deploying...'
+    }
   }
-
-  stage('test') {
-    echo 'testing...'
-  }
-
-  stage('release') {
-    echo 'pushing...'
-  }
-
-  stage('deploy') {
-    echo 'deploying...'
+  catch (e) {
+    echo "Job FAILED.!"
+    throw e
   }
 }
