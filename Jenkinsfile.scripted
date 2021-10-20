@@ -16,6 +16,13 @@ node {
   try {
     checkout scm
 
+    stage('preparation') {
+      sh "git --no-pager diff --name-only HEAD~1 | sort -u | uniq > changelist.txt"
+      script {
+        env.FILENAME = readFile "changelist.txt"
+      }
+    }
+
     stage('build') {
       echo 'building...'
       echo "${params.Greeting} World!"
@@ -29,6 +36,10 @@ node {
       ]) {
         sh "sh scripts/build.sh"
       }
+     
+      if("${env.FILENAME}".indexOf("backend/")) {
+        echo "backend building..."
+      } 
       sh "echo $SECRET"
       sh "printenv"
     }
