@@ -1,5 +1,3 @@
-#!/usr/bin/env groovy
-
 properties([
   parameters([
     string(name: 'Environment', defaultValue: "TEST", description: "Indicates the current execution environment.")
