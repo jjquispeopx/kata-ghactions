@@ -9,7 +9,6 @@ properties([
 
 node {
 
-  env.REGISTRY_PASS = credentials('registry-pass')
   env.TAG = 'image/tag'
   env.IMAGE = 'app-backend'
 
@@ -24,7 +23,11 @@ node {
       echo "${env.TAG}"
       sh "echo ${params.STAGE}"
       sh "echo $TAG"
-      sh "sh scripts/build.sh"
+      withCredentials([
+        string(credentialsId: 'registry-pass', variable: 'REGISTRY_PASS')
+      ]) {
+        sh "sh scripts/build.sh"
+      }
     }
 
     stage('test') {
