@@ -13,7 +13,8 @@ node {
   env.IMAGE = 'app-backend'
   env.SECRET = '$IMAGE:$TAGGIN'
   script {
-    env.VAR = sh('echo ${env.GIT_COMMIT} | cut -c1-10')
+    echo ${env.GIT_COMMIT} | cut -c1-10 > tag.txt
+    env.VAR = readFile tag.txt
   }
 
   try {
