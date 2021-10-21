@@ -5,13 +5,15 @@ pipeline {
   stages {
     stage("build") {
       parallel {
-        when { changeset "frontend/" }
-        stage("build-frontend") {
-          steps { echo "building frontend..." }
-        }
-        when { changeset "backend/" }
-        stage("build-backend") {
-          steps { echo "building backend..." }
+        stages {
+          stage("build-backend") {
+            when { changeset "backend/" }
+            steps { echo "building backend..." }
+          }
+          stage("build-frontend") {
+            when { changeset "frontend/" }
+            steps { echo "building frontend..." }
+          }
         }
       }
     }
