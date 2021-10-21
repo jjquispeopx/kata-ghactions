@@ -13,7 +13,8 @@ pipeline {
       parallel {
         stage("build-backend") {
           when {
-            expression { changeset "backend/" || params.FORCE_BUILD }
+            changeset "backend/"
+            expression { params.FORCE_BUILD == true }
           }
           steps { echo "building backend..." }
         }
