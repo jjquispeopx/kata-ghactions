@@ -5,9 +5,11 @@ pipeline {
   stages {
     stage("build") {
       parallel {
+        when { changeset "frontend/" }
         stage("build-frontend") {
           steps { echo "building frontend..." }
         }
+        when { changeset "backend/" }
         stage("build-backend") {
           steps { echo "building backend..." }
         }
