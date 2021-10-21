@@ -2,11 +2,25 @@ pipeline {
 
   agent any
 
+  options {
+    parallelsAlwaysFailFast()
+  }
+
+  parameters {
+    booleanParam(name: 'FORCE_BUILD', defaultValue: true, description: 'Param to force build action')
+  }
+
+  stages {
+    stage("build") {How should I greet the world?')
+  }
+
   stages {
     stage("build") {
       parallel {
         stage("build-backend") {
-          when { changeset "backend/" }
+          when {
+            expression { changeset "backend/" || params.FORCE_BUILD }
+          }
           steps { echo "building backend..." }
         }
         stage("build-frontend") {
