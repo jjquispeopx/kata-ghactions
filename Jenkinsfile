@@ -4,12 +4,17 @@ pipeline {
 
   stages {
     stage("build") {
-      steps {
-        echo "Hello..! Running job #${env.BUILD_NUMBER}"
+      parallel {
+        stage("build-frontend") {
+          steps { echo "building frontend..." }
+        }
+        stage("build-backend") {
+          steps { echo "building backend..." }
+        }
       }
     }
 
-    stage("test") {
+    stage("Test") {
       steps {
         echo "running test..."
       }
