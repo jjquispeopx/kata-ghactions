@@ -6,9 +6,7 @@ pipeline {
     parallelsAlwaysFailFast()
   }
 
-  parameters {
-    booleanParam(name: 'FORCE_BUILD', defaultValue: true, description: 'Param to force build action')
-  }
+  parameters { booleanParam(name: 'FORCE_BUILD', defaultValue: false, description: '') }
 
   stages {
     stage("build") {How should I greet the world?')
