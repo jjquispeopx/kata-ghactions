@@ -9,10 +9,6 @@ pipeline {
   parameters { booleanParam(name: 'FORCE_BUILD', defaultValue: false, description: '') }
 
   stages {
-    stage("build") {How should I greet the world?')
-  }
-
-  stages {
     stage("build") {
       parallel {
         stage("build-backend") {
