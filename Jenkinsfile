@@ -29,18 +29,11 @@ pipeline {
     }
 
     stage("Test") {
-      agent {
-        docker {
-          image: 'node:14'
-        }
-      }
       when {
-        beforeAgent true
         branch: 'production'
       }
       steps {
         echo "running test..."
-        echo "npm -v"
       }
     }
     stage("release") {
