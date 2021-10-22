@@ -30,6 +30,7 @@ pipeline {
 
     stage("Test") {
       when {
+        beforeAgent true
         branch 'production'
       }
       steps {
