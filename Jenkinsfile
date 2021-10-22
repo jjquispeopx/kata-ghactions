@@ -4,6 +4,7 @@ pipeline {
 
   options {
     parallelsAlwaysFailFast()
+    timestamps()
   }
 
   parameters { booleanParam(name: 'FORCE_BUILD', defaultValue: false, description: '') }
@@ -28,6 +29,10 @@ pipeline {
     }
 
     stage("Test") {
+      when {
+        beforeAgent true
+        branch: 'production'
+      }
       steps {
         echo "running test..."
       }
