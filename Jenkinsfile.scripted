@@ -31,7 +31,7 @@ node {
       sh "echo ${params.STAGE}"
       sh "echo $TAG"
       withCredentials([
-        string(credentialsId: 'registry-pass', variable: 'REGISTRY_PASS')
+        string(credentialsId: 'slack-secret', variable: 'REGISTRY_PASS')
       ]) {
         sh "sh scripts/build.sh"
       }
