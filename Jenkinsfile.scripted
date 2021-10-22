@@ -39,6 +39,7 @@ node {
       if("${env.FILENAME}".indexOf("backend/")) {
         echo "backend building..."
       } 
+      sh "echo WORKSPACE"
       sh "printenv"
     }
 
