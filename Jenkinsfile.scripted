@@ -17,7 +17,7 @@ node {
 
     stage('preparation') {
       sh "git --no-pager diff --name-only HEAD~1 | sort -u | uniq > changelist.txt"
-      env.GIT_COMMIT = sh(script: "git rev-parse HEAD", returnStdout: true).trim()
+      env.GIT_COMMIT = sh(script: "git rev-parse HEAD | cut -c1-10", returnStdout: true).trim()
       script {
         env.FILENAME = readFile "changelist.txt"
       }
