@@ -17,33 +17,30 @@ node {
 
     stage('preparation') {
       sh "git --no-pager diff --name-only HEAD~1 | sort -u | uniq > changelist.txt"
-      sh "cat short_sha.txt"
       script {
         env.FILENAME = readFile "changelist.txt"
       }
     }
 
     stage('build') {
-      steps {
-        echo 'building...'
-        echo "${params.Greeting} World!"
-        echo "${params.STAGE} World!"
-        echo "${env.REGISTRY_PASS}"
-        echo "${env.TAG}"
-        sh "echo ${params.STAGE}"
-        sh "echo $TAG"
-        withCredentials([
-          string(credentialsId: 'registry-pass', variable: 'REGISTRY_PASS')
-        ]) {
-          sh "sh scripts/build.sh"
-        }
-        
-        if("${env.FILENAME}".indexOf("backend/")) {
-          echo "backend building..."
-          sh "$SHA"
-        } 
-        sh "printenv"
+      echo 'building...'
+      echo "${params.Greeting} World!"
+      echo "${params.STAGE} World!"
+      echo "${env.REGISTRY_PASS}"
+      echo "${env.TAG}"
+      sh "echo ${params.STAGE}"
+      sh "echo $TAG"
+      withCredentials([
+        string(credentialsId: 'registry-pass', variable: 'REGISTRY_PASS')
+      ]) {
+        sh "sh scripts/build.sh"
       }
+      
+      if("${env.FILENAME}".indexOf("backend/")) {
+        echo "backend building..."
+        sh "$SHA"
+      } 
+      sh "printenv"
     }
 
     stage('test') {
