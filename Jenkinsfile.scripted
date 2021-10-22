@@ -25,32 +25,25 @@ node {
     }
 
     stage('build') {
-      parallel build-backend: {
-        node {
-          echo 'building...'
-          echo "${params.Greeting} World!"
-          echo "${params.STAGE} World!"
-          echo "${env.REGISTRY_PASS}"
-          echo "${env.TAG}"
-          sh "echo ${params.STAGE}"
-          sh "echo $TAG"
-          withCredentials([
-            string(credentialsId: 'registry-pass', variable: 'REGISTRY_PASS')
-          ]) {
-            sh "sh scripts/build.sh"
-          }
-         
-          if("${env.FILENAME}".indexOf("backend/")) {
-            echo "backend building..."
-            sh "$SHA"
-          } 
-          sh "printenv"
+      steps {
+        echo 'building...'
+        echo "${params.Greeting} World!"
+        echo "${params.STAGE} World!"
+        echo "${env.REGISTRY_PASS}"
+        echo "${env.TAG}"
+        sh "echo ${params.STAGE}"
+        sh "echo $TAG"
+        withCredentials([
+          string(credentialsId: 'registry-pass', variable: 'REGISTRY_PASS')
+        ]) {
+          sh "sh scripts/build.sh"
         }
-      }, 
-      build-frontend {
-        node {
-          echo "building frontend"
-        }
+        
+        if("${env.FILENAME}".indexOf("backend/")) {
+          echo "backend building..."
+          sh "$SHA"
+        } 
+        sh "printenv"
       }
     }
 
