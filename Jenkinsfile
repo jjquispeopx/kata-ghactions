@@ -30,7 +30,7 @@ pipeline {
 
     stage("Test") {
       when {
-        branch: 'production'
+        branch 'production'
       }
       steps {
         echo "running test..."
