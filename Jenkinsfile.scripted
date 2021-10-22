@@ -30,6 +30,7 @@ node {
       echo "${env.TAG}"
       sh "echo ${params.STAGE}"
       sh "echo $TAG"
+      sh "echo $GIT_COMMIT"
       withCredentials([
         string(credentialsId: 'slack-secret', variable: 'REGISTRY_PASS')
       ]) {
