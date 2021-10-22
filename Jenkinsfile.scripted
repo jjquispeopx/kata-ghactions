@@ -38,7 +38,6 @@ node {
       
       if("${env.FILENAME}".indexOf("backend/")) {
         echo "backend building..."
-        sh "$SHA"
       } 
       sh "printenv"
     }
