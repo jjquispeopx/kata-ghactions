@@ -9,7 +9,6 @@ properties([
 
 node {
 
-  env.TAG = 'image/tag'
   env.IMAGE = 'app-backend'
 
   try {
@@ -17,7 +16,7 @@ node {
 
     stage('preparation') {
       sh "git --no-pager diff --name-only HEAD~1 | sort -u | uniq > changelist.txt"
-      env.GIT_COMMIT = sh(script: "git rev-parse HEAD | cut -c1-10", returnStdout: true).trim()
+      env.TAG = sh(script: "git rev-parse HEAD | cut -c1-12", returnStdout: true).trim()
       script {
         env.FILENAME = readFile "changelist.txt"
       }
@@ -28,10 +27,8 @@ node {
       echo "${params.Greeting} World!"
       echo "${params.STAGE} World!"
       echo "${env.REGISTRY_PASS}"
-      echo "${env.TAG}"
       sh "echo ${params.STAGE}"
       sh "echo $TAG"
-      sh "echo $GIT_COMMIT"
       withCredentials([
         string(credentialsId: 'slack-secret', variable: 'REGISTRY_PASS')
       ]) {
