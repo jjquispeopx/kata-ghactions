@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo "$IMAGE $REGISTRY_PASS $Greeting $WORKDIR"
+echo "$IMAGE $REGISTRY_PASS $Greeting $WORKSPACE"
