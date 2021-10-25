@@ -13,3 +13,16 @@ jobs:
           node-version: '14'
       - run: npm install -g bats
       - run: bats -v
+
+  example-job:
+    name: Save output
+    steps:
+      - shell: bash
+        run: |
+          echo "hello humans.!" > output.log
+      - name: Upload output file
+        uses: actions/upload-artifact@v2
+        with:
+          name: output-log-file
+          path: output.log
+
