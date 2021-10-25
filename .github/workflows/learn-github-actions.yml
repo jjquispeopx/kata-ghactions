@@ -4,9 +4,8 @@ on: [push]
 
 jobs:
 
-  runs-on: ubuntu-latest
-
   check-bats-version:
+    runs-on: ubuntu-latest
     name: checking bats package version
     steps:
       - uses: actions/checkout@v2
@@ -17,6 +16,7 @@ jobs:
       - run: bats -v
 
   example-job:
+    runs-on: ubuntu-latest
     name: Save output
     steps:
       - shell: bash
@@ -29,6 +29,7 @@ jobs:
           path: output.log
 
   example-secrets:
+    runs-on: ubuntu-latest
     name: example job to define secrets
     steps:
       - name: Retrieve secret
