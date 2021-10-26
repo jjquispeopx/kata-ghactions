@@ -1,4 +1,10 @@
-on: push
+name: main workflow
+
+on:
+  push:
+    paths:
+      - "backend/*"
+    workflow_dispatch:
 
 jobs:
   one:
