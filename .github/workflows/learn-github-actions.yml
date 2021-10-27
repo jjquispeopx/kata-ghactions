@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: trufflehog scaning
-        run: docker run --rm -v "$(pwd):/proj" --regex dxa4481/trufflehog file:///proj
+        run: docker run --rm -v "$(pwd):/proj" dxa4481/trufflehog --regex file:///proj
       - name: Upload output file
         uses: actions/upload-artifact@v2
         with:
