@@ -76,17 +76,3 @@ jobs:
         run: |
           echo "$super_secret"
 
-  setup:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "setup project..."
-  build:
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "building..."
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "testing..."
