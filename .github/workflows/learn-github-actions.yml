@@ -48,7 +48,7 @@ jobs:
 
   release:
     runs-on: ubuntu-latest
-    name: checking bats package version
+    name: build docker image
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -58,8 +58,8 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with:
-          context: ${{ env.BACKEND_DIR }}
-          file: ${{ env.BACKEND_DIR }}/Dockerfile
+          context: ./${{ env.BACKEND_DIR }}
+          file: ./${{ env.BACKEND_DIR }}/Dockerfile
           tags: user/app:latest
 
   example-job:
