@@ -10,14 +10,13 @@ on:
 env:
   BACKEND_DIR: 'backend/'
 
-defaults:
-  run:
-    working-directory: ${{ env.BACKEND_DIR }}
-
 jobs:
 
   secrets-analysis:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.BACKEND_DIR }}
     name: Analisys secrets
     steps:
       - uses: actions/checkout@v2
