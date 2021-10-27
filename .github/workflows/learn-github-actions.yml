@@ -8,6 +8,17 @@ on:
 
 jobs:
 
+  secrets-analysis:
+    runs-on: ubuntu-latest
+    name: Analisys secrets
+      - uses: actions/checkout@v2
+        run: docker run --rm -v "$(pwd):/proj" --regex dxa4481/trufflehog file:///proj
+      - name: Upload output file
+        uses: actions/upload-artifact@v2
+        with:
+          name: trufflehog-scan
+          path: trufflehog-scan.txt
+
   check-bats-version:
     runs-on: ubuntu-latest
     name: checking bats package version
