@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Analisys secrets
       - uses: actions/checkout@v2
+      - name: trufflehog scaning
         run: docker run --rm -v "$(pwd):/proj" --regex dxa4481/trufflehog file:///proj
       - name: Upload output file
         uses: actions/upload-artifact@v2
