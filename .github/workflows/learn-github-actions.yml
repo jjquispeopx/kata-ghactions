@@ -39,7 +39,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
-        working_directory: ${{ env.BACKEND_DIR }}
+        working-directory: ${{ env.BACKEND_DIR }}
         run: |
           npm ci
           ls
