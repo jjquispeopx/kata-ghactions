@@ -14,9 +14,6 @@ jobs:
 
   secrets-analysis:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ${{ env.BACKEND_DIR }}
     name: Analisys secrets
     steps:
       - uses: actions/checkout@v2
@@ -32,6 +29,9 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.BACKEND_DIR }}
     strategy:
       matrix:
         node-version: [10.x, 12.x, 14.x, 15.x]
