@@ -56,7 +56,12 @@
       pip:
         name: docker
 
-    - name: Add nginx compose example.
+    - name: Create directory for nginx service.
+      file:
+        path: {{ nginx_compose_folder }}
+        state: directory
+
+    - name: Add nginx service compose example.
       template:
         src: "templates/nginx.yml.js"
         dest: "{{ nginx_compose_folder }}/nginx.yml"
@@ -64,6 +69,6 @@
         owner: root
         mode: 0600
 
-    - name: Launch nginx compose service.
+    - name: Launch nginx service.
       shell: |
         docker-compose -f {{ nginx_compose_folder }}/nginx.yml up -d
