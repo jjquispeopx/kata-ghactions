@@ -68,7 +68,7 @@ jobs:
           # known_hosts: .known_hosts
           options: |
             --extra-vars hello=there
-            --verbose
+#            --verbose
 
 #  example-job:
 #    runs-on: ubuntu-latest
