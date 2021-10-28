@@ -1,7 +1,7 @@
 version: '3'
 
 service:
-  image: "{{ nginx_image }}"
+  image: "nginx:{{ nginx_image }}"
   ports:
     - 80:80
   restart: always
