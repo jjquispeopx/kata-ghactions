@@ -4,4 +4,4 @@
 
   tasks:
     - name: Check conexion
-      echo: hello world
+      shell: echo 'hello world'
