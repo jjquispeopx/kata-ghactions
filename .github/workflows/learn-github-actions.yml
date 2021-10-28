@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - 'backend/'
-      - 'devops/'
+      - 'devops/*'
       - '**/learn-github-actions.yml'
   workflow_dispatch:
 
