@@ -29,7 +29,13 @@
         state: present
 
     - name: Update apt and install docker-ce.
-      apt: name=docker update_cache=true state=latest
+      apt: 
+        update_cache: true
+        state: latest
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
 
     - name: Install docker-compose.
       get_url: 
