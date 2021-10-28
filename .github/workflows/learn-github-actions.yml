@@ -70,7 +70,7 @@ jobs:
             --extra-vars backend_image="jjquispeopx/backend"
             --extra-vars registry_user=${{secrets.REGISTRY_USER}}
             --extra-vars registry_token=${{secrets.REGISTRY_TOKEN}}
-#            --verbose
+            --verbose
 
 #  example-job:
 #    runs-on: ubuntu-latest
