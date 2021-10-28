@@ -52,7 +52,7 @@ jobs:
         if: ${{ failure() }}
         uses: slackapi/slack-github-action@v1.15.0
         with:
-          channel-id: 'kata-jenkins'  # Slack channel id to post message
+          channel-id: 'C02JACP1WLA'  # Slack channel id to post message
           slack-message: 'Build failure!'
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
