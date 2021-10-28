@@ -56,6 +56,11 @@
       pip:
         name: docker
 
+    - name: Crete docker network.
+      community.docker.docker_network:
+        name: nginx-net
+        state: present
+
     - name: Create directory for nginx service.
       file:
         path: '{{ nginx_compose_folder }}'
