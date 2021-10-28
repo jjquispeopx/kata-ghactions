@@ -9,6 +9,7 @@ on:
 
 env:
   BACKEND_DIR: 'backend'
+  DEVOPS_DIR: 'devops'
 
 jobs:
 
@@ -29,6 +30,7 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    needs: secrets-analysis
     defaults:
       run:
         working-directory: ${{ env.BACKEND_DIR }}
@@ -48,6 +50,7 @@ jobs:
 
   release:
     runs-on: ubuntu-latest
+    needs: build
     name: build docker image
     steps:
       - uses: actions/checkout@v2
@@ -63,26 +66,45 @@ jobs:
           file: ${{ env.BACKEND_DIR }}/Dockerfile
           tags: user/app:latest
 
-  example-job:
+  deploy:
     runs-on: ubuntu-latest
-    name: Save output
+    name: Deploy example
     steps:
-      - shell: bash
-        run: |
-          echo "hello humans.!" > output.log
-      - name: Upload output file
-        uses: actions/upload-artifact@v2
+      - uses: actions/checkout@v2
+      - name: Run playbook
+        uses: dawidd6/action-ansible-playbook@v2
         with:
-          name: output-log-file
-          path: output.log
+          playbook: deploy.yml
+          # Optional, directory where playbooks live
+          directory: ${{ env.DEVOPS_DIR }}/ansible/
+          key: ${{secrets.SSH_PRIVATE_KEY}}
+          inventory: |
+            [all]
+            ${{ secrets.REMOTE_HOST }} admin_user=${{ secrets.REMOTE_USER }}
+          # known_hosts: .known_hosts
+          options: |
+            --extra-vars hello=there
+            --verbose
 
-  example-secrets:
-    runs-on: ubuntu-latest
-    name: example job to define secrets
-    steps:
-      - name: Retrieve secret
-        env:
-          super_secret: ${{ secrets.SUPERSECRET }}
-        run: |
-          echo "$super_secret"
-
+#  example-job:
+#    runs-on: ubuntu-latest
+#    name: Save output
+#    steps:
+#      - shell: bash
+#        run: |
+#          echo "hello humans.!" > output.log
+#      - name: Upload output file
+#        uses: actions/upload-artifact@v2
+#        with:
+#          name: output-log-file
+#          path: output.log
+#
+#  example-secrets:
+#    runs-on: ubuntu-latest
+#    name: example job to define secrets
+#    steps:
+#      - name: Retrieve secret
+#        env:
+#          super_secret: ${{ secrets.SUPERSECRET }}
+#        run: |
+#          echo "$super_secret"
