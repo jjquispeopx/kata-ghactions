@@ -2,6 +2,9 @@
 - hosts: all
   become: yes
 
+  vars:
+    nginx_compose_folder: /opt/nginx
+
   tasks:
     - name: Install aptitude using apt
       apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
@@ -52,3 +55,15 @@
     - name: Install Docker module for Python.
       pip:
         name: docker
+
+    - name: Add nginx compose example.
+      template:
+        src: "templates/nginx.yml.js"
+        dest: "{{ nginx_compose_folder }}/nginx.yml"
+        owner: root
+        owner: root
+        mode: 0600
+
+    - name: Launch nginx compose service.
+      shell: |
+        docker-compose -f {{ nginx_compose_folder }}/nginx.yml up -d
