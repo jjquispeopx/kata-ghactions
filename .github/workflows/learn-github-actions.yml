@@ -63,7 +63,7 @@ jobs:
           key: ${{secrets.SSH_PRIVATE_KEY}}
           inventory: |
             [all]
-            ${{ secrets.REMOTE_HOST }} admin_user=${{ secrets.REMOTE_USER }}
+            ${{ secrets.REMOTE_HOST }} ansible_user=${{ secrets.REMOTE_USER }}
           # known_hosts: .known_hosts
           options: |
             --extra-vars hello=there
