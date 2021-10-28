@@ -61,6 +61,16 @@
         name: nginx-net
         state: present
 
+    - name: Login into DockerHub.
+      community.docker.docker_login:
+        username: '{{ registry_user }}'
+        password: '{{ registry_token }}'
+
+    - name: Pull private image.
+      community.docker.docker_image:
+        name: '{{ backend_image }}'
+        source: pull
+
     - name: Create directory for nginx service.
       file:
         path: '{{ nginx_compose_folder }}'

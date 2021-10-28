@@ -65,9 +65,11 @@ jobs:
           inventory: |
             [all]
             ${{ secrets.REMOTE_HOST }} ansible_user=${{ secrets.REMOTE_USER }}
-          # known_hosts: .known_hosts
           options: |
-            --extra-vars nginx_image="nginx:1.21-alpine"
+            --extra-vars nginx_image="nginx:1.21.3-alpine"
+            --extra-vars backend_image="jjquispeopx/backend"
+            --extra-vars registry_user=${{secrets.REGISTRY_USER}}
+            --extra-vars registry_token=${{secrets.REGISTRY_TOKEN}}
 #            --verbose
 
 #  example-job:
