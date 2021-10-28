@@ -3,5 +3,34 @@
   become: yes
 
   tasks:
-    - name: Check conexion
-      shell: echo 'hello world'
+    - name: Install aptitude using apt
+      apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
+
+    - name: Install required system packages.
+      apt:
+        state: present
+        update_cache: yes
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - gnupg
+          - lsb-release
+          - python3-pip
+
+    - name: Add Docker GPG apt Key.
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker Repository.
+      apt_repository:
+        repo: "deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/ubuntu focal stable"
+        state: present
+
+    - name: Update apt and install docker-ce.
+      apt: name=docker update_cache=true state=latest
+
+    - name: Install Docker module for Python.
+      pip:
+        name: docker
