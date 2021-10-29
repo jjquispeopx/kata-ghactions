@@ -52,6 +52,13 @@ jobs:
         run: echo "building..."
       - name: force failure
         run: exit 1
+      - uses: act10ns/slack@v1
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+          channel: '#kata-jenkins'
+        if: failure()
+
 #      - uses: 8398a7/action-slack@v3
 #          with:
 #            status: ${{ job.status }}
